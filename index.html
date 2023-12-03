@@ -1,12 +1,110 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>maplers literally want one thing and it's</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
+        <style>
+            body {
+                transition: background-color 0.5s;
+                background-image: url('images/wateringhole.png');
+                background-color: black;
+                overflow: hidden;
+            }
+            svg {
+                    user-select: none;
+                }
+
+            #around, #around-blur, #tooltip {
+                transition: opacity 0.5s;
+            }
+            
+            #around, #around-blur {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 50%;
+                min-width: 800px;
+            }
+
+            #around {
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+
+            #around-blur {
+                opacity: 0;
+                transition: opacity 0.5s, transform 0.3s ease;
+                filter: blur(10px) grayscale(100%);
+                transform: translate(-50%, -50%) scale(1.15);
+                z-index: -1;
+            }
+
+            #around:hover {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            #text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 3em;
+                font-weight: bold;
+                color: red;
+                opacity: 0;
+                transition: opacity 0.5s;
+            }
+
+            #tooltip {
+                opacity: 0; /* Start invisible */
+                transition: opacity 0.5s;
+                position: absolute;
+                padding: 10px;
+                background-color: rgb(83, 120, 63);
+                border-radius: 5px;
+                pointer-events: none;
+            }
+
+            .no-hover-blur:hover,
+            .no-hover-blur:focus {
+                filter: none !important;
+            }
+        </style>
+    </head>
 <body>
-    <img id="background" src="https://i.gyazo.com/01797ac9b2c3c4853f4048b750f875ae.jpg" style="display:none">
-    <img id="image1" src="https://msavatar1.nexon.net/Character/BDBLFPBANCGCNAJHBPCIBAFNMENHAAHECGIKEHDDIFJMADPNMOFNNFCFNELMHGELKALPOIOJBOPAKIJFMDDFDEOMADPFEIACNGNEPALAGKLGCFAGEPKENCMAGLENCOGBGDDDMKENIBOOMBDIEFAEMFOPDKCMIAEOCFLBPGIFCOCIKPANJDELCOMJBFNAPLBDPCPEBEFJGOPAIOGBPPGHLDFHFPGCLNFDHMOOCLPMPNBEKDLKKDOFDIAFIJDNBLAF.png" style="display:none">
-    <img id="image2" src="https://res.cloudinary.com/dn2ie5quy/image/upload/v1593360268/Maplestory%20Monster%20buttons/redsnail1_rrtxxw.png" style="display:none">
-    <img id="image3" src="pig.png" style="display:none">
-    <img id="image4" src="slime.png" style="display:none">
-    <canvas id="canvas"></canvas>
-    <script src="script.js"></script>
+    <img id="around-blur" src="images/willa.svg" style="display: none;">
+    <img id="around" src="images/willa.svg">
+    <div id="tooltip" style="display: none;">click to 👀</div>
+    <div id="text" style="display: none;">
+        /sdownloading user data: /e█████████████████
+        /!
+        /sdownload complete./e/n
+        /ssubmitting user report: /e█████████████████
+        /!
+        submission complete./n
+        click to continue.
+        /?/!
+        hi./n
+        you just fell for the oldest trick in the book./n
+        you didn't think that would actually work, did you?/n
+        sigh./n
+        /n
+        well, thanks for visiting./n
+        /n
+        any account data linked to browser cache information has been transmitted back to nexon.
+        /n
+        click to continue
+        /?/!
+        just kidding./n
+        you h😈rny fool./n
+        /n
+        😜
+        /?
+
+        </div>
+    <script src="scripts/suffer.js"></script>
 </body>
 </html>
