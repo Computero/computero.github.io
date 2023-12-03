@@ -42,83 +42,111 @@ window.onload = function() {
         tooltip.style.top = e.pageY + 'px';
     };
 
-// Add event listeners
-around.addEventListener('click', handleClick);
-textElement.addEventListener('click', handleClick);
-let isTyping = false
-
-function handleClick() {
-    if (isTyping) return;
-    // Hide images
-    around.style.display = 'none';
-    aroundBlur.style.display = 'none';
-
-    // Change background color and remove background image
-    document.body.style.backgroundColor = 'black';
-    document.body.style.backgroundImage = 'none';
-
-    // Show the text element
-    textElement.style.display = 'block';
-    textElement.style.opacity = '1';
-
-    // Start typing effect
-    typeText(textElement.textContent);
-}
-
-function typeText(text) {
-    let displayText = '';
-    let i = 0;
-    let delay = 25;
-
-    isTyping = true;
-
-    function type() {
-        if (i < text.length) {
-            let char = text[i];
-
-            if (char === '/') {
-                let sequence = text.slice(i, i+2);
-
-                switch (sequence) {
-                    case '/s':
-                        delay = 0;
-                        i += 2;
-                        break;
-                    case '/e':
-                        delay = 100;
-                        i += 2;
-                        break;
-                    case '/!':
-                        displayText = '';
-                        i += 2;
-                        break;
-                    case '/?':
-                        textElement.addEventListener('click', () => { i += 2; type(); });
-                        return;
-                    case '/n':
-                        displayText += '<br>';
-                        i += 2;
-                        break;
-                    default:
-                        displayText += char;
-                        i++;
-                        break;
-                }
-            } else {
-                displayText += char;
-                i++;
-            }
-
-            textElement.innerHTML = displayText;
-
-            setTimeout(type, delay);
-        }
-        else {
-            isTyping = false;
-        }
+    around.addEventListener('mousedown', handleMouseDown);
+    around.addEventListener('mouseup', handleMouseUp);
+    around.addEventListener('mouseleave', handleMouseUp);
+    
+    function handleMouseDown() {
+        around.style.transform = 'translate(-50%, -50%) scale(1.2)';
+        aroundBlur.style.transform = 'translate(-50%, -50%) scale(1.35)';
+    }
+    
+    function handleMouseUp() {
+        around.style.transform = 'translate(-50%, -50%) scale(1.1)';
+        aroundBlur.style.transform = 'translate(-50%, -50%) scale(1.15)';
     }
 
-    type();
-}
+    around.addEventListener('mousedown', handleMouseDown);
+    around.addEventListener('mouseup', handleMouseUp);
+    around.addEventListener('mouseleave', handleMouseUp);
+
+    function handleMouseDown() {
+        around.style.transform = 'translate(-50%, -50%) scale(1.2)';
+        aroundBlur.style.transform = 'translate(-50%, -50%) scale(1.35)';
+    }
+
+    function handleMouseUp() {
+        around.style.transform = 'translate(-50%, -50%) scale(1.1)';
+        aroundBlur.style.transform = 'translate(-50%, -50%) scale(1.15)';
+    }
+
+    // Add event listeners
+    around.addEventListener('click', handleClick);
+    textElement.addEventListener('click', handleClick);
+    let isTyping = false
+
+    function handleClick() {
+        if (isTyping) return;
+        // Hide images
+        around.style.display = 'none';
+        aroundBlur.style.display = 'none';
+
+        // Change background color and remove background image
+        document.body.style.backgroundColor = 'black';
+        document.body.style.backgroundImage = 'none';
+
+        // Show the text element
+        textElement.style.display = 'block';
+        textElement.style.opacity = '1';
+
+        // Start typing effect
+        typeText(textElement.textContent);
+    }
+
+    function typeText(text) {
+        let displayText = '';
+        let i = 0;
+        let delay = 25;
+
+        isTyping = true;
+
+        function type() {
+            if (i < text.length) {
+                let char = text[i];
+
+                if (char === '/') {
+                    let sequence = text.slice(i, i+2);
+
+                    switch (sequence) {
+                        case '/s':
+                            delay = 0;
+                            i += 2;
+                            break;
+                        case '/e':
+                            delay = 100;
+                            i += 2;
+                            break;
+                        case '/!':
+                            displayText = '';
+                            i += 2;
+                            break;
+                        case '/?':
+                            textElement.addEventListener('click', () => { i += 2; type(); });
+                            return;
+                        case '/n':
+                            displayText += '<br>';
+                            i += 2;
+                            break;
+                        default:
+                            displayText += char;
+                            i++;
+                            break;
+                    }
+                } else {
+                    displayText += char;
+                    i++;
+                }
+
+                textElement.innerHTML = displayText;
+
+                setTimeout(type, delay);
+            }
+            else {
+                isTyping = false;
+            }
+        }
+
+        type();
+    }
     
 }
